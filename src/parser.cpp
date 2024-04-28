@@ -151,10 +151,30 @@ AST_T *parser_parse_function_definition(parser_T *parser, scope_T *scope)
 
     parser_eat(parser, TOKEN_STRUCT::TOKEN_ID); // function name
 
+    parser_parse_function_args(ast, parser, scope);
+
+    parser_eat(parser, TOKEN_STRUCT::TOKEN_LBRACE);
+
+    ast->function_definition_body = parser_parse_statements(parser, scope);
+
+    parser_eat(parser, TOKEN_STRUCT::TOKEN_RBRACE);
+
+    ast->scope = scope;
+
+    return ast;
+}
+void parser_parse_function_args(AST_T *ast, parser_T *parser, scope_T *scope)
+{
     parser_eat(parser, TOKEN_STRUCT::TOKEN_LPAREN);
 
     ast->function_definition_args = vector<AST_T *>();
 
+    // If there are no arguments in the function
+    if (parser->current_token->type == TOKEN_STRUCT::TOKEN_RPAREN)
+    {
+        parser_eat(parser, TOKEN_STRUCT::TOKEN_RPAREN);
+        return;
+    }
     AST_T *arg = parser_parse_variable(parser, scope);
     ast->function_definition_args.push_back(arg);
 
@@ -166,16 +186,6 @@ AST_T *parser_parse_function_definition(parser_T *parser, scope_T *scope)
     }
 
     parser_eat(parser, TOKEN_STRUCT::TOKEN_RPAREN);
-
-    parser_eat(parser, TOKEN_STRUCT::TOKEN_LBRACE);
-
-    ast->function_definition_body = parser_parse_statements(parser, scope);
-
-    parser_eat(parser, TOKEN_STRUCT::TOKEN_RBRACE);
-
-    ast->scope = scope;
-
-    return ast;
 }
 
 AST_T *parser_parse_variable(parser_T *parser, scope_T *scope)

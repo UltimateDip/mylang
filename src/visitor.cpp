@@ -12,7 +12,7 @@ static AST_T *builtin_function_print(visitor_T *visitor, vector<AST_T *> args)
         switch (visited_ast->type)
         {
         case AST_STRUCT::AST_STRING:
-            cout << visited_ast->string_value<< endl;
+            cout << visited_ast->string_value << endl;
             break;
         default:
             cout << visited_ast << endl;
@@ -115,9 +115,7 @@ AST_T *visitor_visit_variable_definition(visitor_T *visitor, AST_T *node)
 
 AST_T *visitor_visit_function_definition(visitor_T *visitor, AST_T *node)
 {
-    scope_add_function_definition(
-        node->scope,
-        node);
+    scope_add_function_definition(node->scope, node);
 
     return node;
 }
@@ -151,11 +149,9 @@ AST_T *visitor_visit_function_call(visitor_T *visitor, AST_T *node)
         return builtin_function_clear(visitor, node->function_call_arguments);
     }
 
-    AST_T *fdef = scope_get_function_definition(
-        node->scope,
-        node->function_call_name);
+    AST_T *fdef = scope_get_function_definition(node->scope, node->function_call_name);
 
-    if (fdef)
+    if (!fdef)
     {
         cout << "Undefined method `" << node->function_call_name << "`\n";
         exit(1);
