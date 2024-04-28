@@ -1,0 +1,7 @@
+function dosome(){
+    var x = "dip";
+}
+
+
+var name = "dipankar dutta";
+print(name);
