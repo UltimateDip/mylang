@@ -93,7 +93,7 @@ token_T *lexer_collect_id(lexer_T *lexer)
 {
     string value;
 
-    while (isalnum(lexer->c))
+    while (isalnum(lexer->c) or lexer->c == '_')
     {
         string s = lexer_get_current_char_as_string(lexer);
         value += s;

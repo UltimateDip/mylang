@@ -1,0 +1,9 @@
+var name = "dipankar dutta";
+print(name);
+
+this_wont_work();
+
+function this_wont_work(){
+    var abc = "function is defined after the function call";
+    print(abc);
+};

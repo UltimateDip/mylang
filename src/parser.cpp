@@ -51,6 +51,7 @@ AST_T *parser_parse_statement(parser_T *parser, scope_T *scope)
 
 AST_T *parser_parse_statements(parser_T *parser, scope_T *scope)
 {
+    // every statement ending with a semicolon
     AST_T *compound = init_ast(AST_STRUCT::AST_COMPOUND);
     compound->scope = scope;
     compound->compound_value = vector<AST_T *>();

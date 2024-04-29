@@ -149,6 +149,8 @@ AST_T *visitor_visit_function_call(visitor_T *visitor, AST_T *node)
         return builtin_function_clear(visitor, node->function_call_arguments);
     }
 
+    // user defined functions
+
     AST_T *fdef = scope_get_function_definition(node->scope, node->function_call_name);
 
     if (!fdef)
@@ -159,6 +161,14 @@ AST_T *visitor_visit_function_call(visitor_T *visitor, AST_T *node)
 
     for (int i = 0; i < node->function_call_arguments.size(); i++)
     {
+        if (node->function_call_arguments[i]->type == AST_STRUCT::AST_NOOP)
+            break;
+        
+        if(i >= fdef->function_definition_args.size())
+        {
+            cout<<"Too many arguments provided to function \""<<node->function_call_name<<"\""<<endl;
+            exit(1);
+        }
         // grab the variable from the function definition arguments
         AST_T *ast_var = (AST_T *)fdef->function_definition_args[i];
 
