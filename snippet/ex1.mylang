@@ -1,9 +1,0 @@
-function dosome(){
-    var x = "dip";
-    print(x);
-};
-
-var name = "dipankar dutta";
-print(name);
-
-dosome();
