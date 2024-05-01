@@ -22,7 +22,7 @@ jobs:
     # - name: make distcheck
     #   run: make distcheck
     - name: Install g++
-      run: sudo apt-get install -y g++ -8
+      run: sudo apt-get install -y g++-8
       
     - name: Build .out file
       run: make
