@@ -10,7 +10,7 @@ AST_T *scope_add_function_definition(scope_T *scope, AST_T *fdef)
 {
     if(scope->function_definitions.count(fdef->function_definition_name))
     {
-        cout<<"Function "<<fdef->function_definition_name<<" already defined"<<endl;
+        cerr<<"Function `"<<fdef->function_definition_name<<"` already defined"<<endl;
         exit(1);
     }
     scope->function_definitions[fdef->function_definition_name] = fdef;
@@ -32,7 +32,7 @@ AST_T *scope_add_variable_definition(scope_T *scope, AST_T *vdef)
 {
     if(scope->variable_definitions.count(vdef->variable_definition_variable_name))
     {
-        cout<<"Variable "<<vdef->variable_definition_variable_name<<" already defined"<<endl;
+        cerr<<"Variable `"<<vdef->variable_definition_variable_name<<"` already defined"<<endl;
         exit(1);
     }
     scope->variable_definitions[vdef->variable_definition_variable_name] = vdef;

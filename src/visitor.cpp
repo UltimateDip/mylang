@@ -15,7 +15,7 @@ static AST_T *builtin_function_print(visitor_T *visitor, vector<AST_T *> args)
             cout << visited_ast->string_value << endl;
             break;
         default:
-            cout << visited_ast << endl;
+            cerr << "Type not supported : `" << visited_ast->type << "`, memory : " << visited_ast << endl;
             break;
         }
     }
@@ -32,11 +32,11 @@ static AST_T *builtin_function_exit(visitor_T *visitor, vector<AST_T *> args)
         switch (visited_ast->type)
         {
         case AST_STRUCT::AST_NOOP:
-            printf("You exited\n");
+            cout << "You exited" << endl;
             exit(0);
             break;
         default:
-            cout << visited_ast << endl;
+            cerr << "Type not supported : [" << visited_ast->type << "], memory : " << visited_ast << endl;
             break;
         }
     }
@@ -56,7 +56,7 @@ static AST_T *builtin_function_clear(visitor_T *visitor, vector<AST_T *> args)
             system("clear");
             break;
         default:
-            cout << visited_ast << endl;
+            cerr << "Type not supported : [" << visited_ast->type << "], memory : " << visited_ast << endl;
             break;
         }
     }
@@ -98,7 +98,7 @@ AST_T *visitor_visit(visitor_T *visitor, AST_T *node)
         break;
     }
 
-    printf("Uncaught statement of type `%d`\n", node->type);
+    cerr << "Uncaught statement of type " << node->type << endl;
     exit(1);
 
     return init_ast(AST_STRUCT::AST_NOOP);
@@ -129,7 +129,7 @@ AST_T *visitor_visit_variable(visitor_T *visitor, AST_T *node)
     if (vdef)
         return visitor_visit(visitor, vdef->variable_definition_value);
 
-    cout << "Undefined variable `" << node->variable_name << "`\n";
+    cerr << "Undefined variable `" << node->variable_name << "`\n";
     exit(1);
 }
 
@@ -155,7 +155,7 @@ AST_T *visitor_visit_function_call(visitor_T *visitor, AST_T *node)
 
     if (!fdef)
     {
-        cout << "Undefined method `" << node->function_call_name << "`\n";
+        cerr << "Undefined method `" << node->function_call_name << "`\n";
         exit(1);
     }
 
@@ -163,10 +163,10 @@ AST_T *visitor_visit_function_call(visitor_T *visitor, AST_T *node)
     {
         if (node->function_call_arguments[i]->type == AST_STRUCT::AST_NOOP)
             break;
-        
-        if(i >= fdef->function_definition_args.size())
+
+        if (i >= fdef->function_definition_args.size())
         {
-            cout<<"Too many arguments provided to function \""<<node->function_call_name<<"\""<<endl;
+            cerr << "Too many arguments provided to function `" << node->function_call_name << "`" << endl;
             exit(1);
         }
         // grab the variable from the function definition arguments

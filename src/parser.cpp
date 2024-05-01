@@ -24,7 +24,7 @@ void parser_eat(parser_T *parser, TOKEN_STRUCT::TOKEN token_type)
     }
     else
     {
-        cout << "Unexpected token `"
+        cerr << "Unexpected token `"
              << parser->current_token->value
              << "`, with type "
              << parser->current_token->type
@@ -88,13 +88,13 @@ AST_T *parser_parse_expr(parser_T *parser, scope_T *scope)
 
 AST_T *parser_parse_factor(parser_T *parser, scope_T *scope)
 {
-    cout << "under construction" << endl;
+    cerr << "under construction" << endl;
     exit(1);
 }
 
 AST_T *parser_parse_term(parser_T *parser, scope_T *scope)
 {
-    cout << "under construction" << endl;
+    cerr << "under construction" << endl;
     exit(1);
 }
 
