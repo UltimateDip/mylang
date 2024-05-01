@@ -1,6 +1,8 @@
 #include <fstream>
 #include <vector>
-#include <bits/stdc++.h>
+#include <string>
+#include <iostream>
+using namespace std;
 
 string get_file_contents(const string filepath)
 {

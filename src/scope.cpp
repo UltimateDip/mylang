@@ -1,5 +1,9 @@
 #include "include/scope.h"
 
+#include <iostream>
+using namespace std;
+
+
 scope_T *init_scope()
 {
     scope_T *scope = new scope_T();

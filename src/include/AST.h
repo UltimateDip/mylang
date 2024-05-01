@@ -1,7 +1,9 @@
 #ifndef AST_H
 #define AST_H
 
-#include <bits/stdc++.h>
+#include <string>
+#include <vector>
+using namespace std;
 
 typedef struct AST_STRUCT
 {

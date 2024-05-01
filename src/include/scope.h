@@ -2,6 +2,10 @@
 #define SCOPE_H
 #include "AST.h"
 
+#include <map>
+#include <string>
+using namespace std;
+
 typedef struct SCOPE_STRUCT
 {
     map<string, AST_T *> function_definitions;

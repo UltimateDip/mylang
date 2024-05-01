@@ -1,5 +1,4 @@
 #include "include/token.h"
-#include <bits/stdc++.h>
 
 token_T *init_token(TOKEN_STRUCT::TOKEN type, string value)
 {

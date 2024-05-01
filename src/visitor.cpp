@@ -1,7 +1,8 @@
 #include "include/visitor.h"
 #include "include/scope.h"
-#include <stdio.h>
-#include <string.h>
+
+#include <iostream>
+using namespace std;
 
 static AST_T *builtin_function_print(visitor_T *visitor, vector<AST_T *> args)
 {

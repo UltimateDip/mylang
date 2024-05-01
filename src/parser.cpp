@@ -1,7 +1,8 @@
 #include "include/parser.h"
 #include "include/scope.h"
-#include <stdio.h>
-#include <string.h>
+
+#include <iostream>
+using namespace std;
 
 parser_T *init_parser(lexer_T *lexer)
 {

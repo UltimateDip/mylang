@@ -1,7 +1,8 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-#include <bits/stdc++.h>
+#include <string>
+using namespace std;
 
 typedef struct TOKEN_STRUCT
 {

@@ -3,6 +3,7 @@ name: C/C++ CI
 on:
   push:
     branches: ["main"]
+    
   # pull_request:
   #   branches: [ "main" ]
 
@@ -12,6 +13,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build .out file
+        run: make
+
       # - name: configure
       #   run: ./configure
       # - name: make
@@ -22,6 +27,3 @@ jobs:
       #   run: make distcheck
       # - name: Install g++
       #   run: sudo apt-get install -y g++
-
-      - name: Build .out file
-        run: make
