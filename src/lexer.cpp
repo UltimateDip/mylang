@@ -14,14 +14,14 @@ void lexer_advance(lexer_T *lexer)
 {
     if (lexer->c != '\0' and lexer->i < lexer->contents.size())
     {
-        lexer->i +=1;
+        lexer->i += 1;
         lexer->c = lexer->contents[lexer->i];
     }
 }
 
 void lexer_skip_whitespace(lexer_T *lexer)
 {
-    while (lexer->c == ' ' or lexer->c == '\n')
+    while (lexer->c == ' ' or lexer->c == '\n' or lexer->c == '\r')
     {
         lexer_advance(lexer);
     }
@@ -32,9 +32,9 @@ token_T *lexer_get_next_token(lexer_T *lexer)
 
     while (lexer->c != '\0' and lexer->i < lexer->contents.size())
     {
-        if (lexer->c == ' ' or lexer->c == '\n')
+        if (lexer->c == ' ' or lexer->c == '\n' or lexer->c == '\r')
             lexer_skip_whitespace(lexer);
-            
+
         if (isalnum(lexer->c))
             return lexer_collect_id(lexer);
 
@@ -113,5 +113,5 @@ token_T *lexer_advance_with_token(lexer_T *lexer, token_T *token)
 
 string lexer_get_current_char_as_string(lexer_T *lexer)
 {
-    return string(1,lexer->c);
+    return string(1, lexer->c);
 }
